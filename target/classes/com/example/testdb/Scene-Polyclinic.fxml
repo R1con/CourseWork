@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testdb.PolyclinicController">
+   <children>
+      <TableView fx:id="tablePolyclinic" layoutX="112.0" layoutY="90.0" prefHeight="200.0" prefWidth="406.0">
+        <columns>
+          <TableColumn fx:id="columnNamePolyclinic" prefWidth="200.79998779296875" text="Название поликлиники" />
+          <TableColumn fx:id="columnAddress" minWidth="0.0" prefWidth="204.800048828125" text="Адрес" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="449.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testdb.DoctorController">
+   <children>
+      <TableView fx:id="tableDoctor" layoutX="147.0" layoutY="81.0" prefHeight="274.0" prefWidth="493.0">
+        <columns>
+          <TableColumn fx:id="idDoctor" prefWidth="75.0" text="DoctorID" />
+          <TableColumn fx:id="colName" prefWidth="75.0" text="Имя" />
+            <TableColumn fx:id="colSurname" prefWidth="75.0" text="Фамилия" />
+            <TableColumn fx:id="colMiddleName" prefWidth="75.0" text="Отчество" />
+            <TableColumn fx:id="colPhoneNumber" prefWidth="112.00006103515625" text="Номер телефона" />
+            <TableColumn fx:id="colOffice" prefWidth="77.59994506835938" text="№ Кабинета" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
