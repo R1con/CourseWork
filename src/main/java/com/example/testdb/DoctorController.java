@@ -4,18 +4,17 @@ import DB.ConnectionDB;
 import Model.Doctor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import org.w3c.dom.events.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,7 +23,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
 
 public class DoctorController implements Initializable {
 
@@ -48,6 +46,19 @@ public class DoctorController implements Initializable {
 
     @FXML
     private TableView<Doctor> tableDoctor;
+
+    @FXML
+    private Button btnT0;
+
+    @FXML
+    void handleButtonAction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Scene-Pacient.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("fks");
+        stage.setScene(new Scene(root1));
+        stage.show();
+    }
 
 
     private ObservableList<Doctor> data = FXCollections.observableArrayList();
@@ -86,5 +97,4 @@ public class DoctorController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadData();
     }
-
 }

@@ -14,6 +14,9 @@
         <junit.version>5.7.1</junit.version>
     </properties>
 
+
+
+
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -65,7 +68,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.example.testdb/com.example.testdb.HelloApplication</mainClass>
+                            <mainClass>com.example.testdb/com.example.testdb.MainApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>

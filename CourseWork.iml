@@ -30,5 +30,8 @@
     <orderEntry type="library" name="Maven: org.mortbay.jetty:jetty:6.1.25" level="project" />
     <orderEntry type="library" name="Maven: org.mortbay.jetty:jetty-util:6.1.25" level="project" />
     <orderEntry type="library" name="Maven: org.mortbay.jetty:servlet-api:2.5-20081211" level="project" />
+    <orderEntry type="library" name="fonts-fontawesome-3.2.1.0" level="project" />
+    <orderEntry type="library" name="fontawesomefx-8.2" level="project" />
+    <orderEntry type="library" name="fontawesomefx-8.9" level="project" />
   </component>
 </module>

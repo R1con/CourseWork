@@ -2,6 +2,7 @@ module com.example.testdb {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires fontawesomefx;
 
 
     opens com.example.testdb to javafx.fxml;

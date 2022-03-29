@@ -7,13 +7,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ConnectionDB {
-
-
-
     public static Connection ConnectionMyDB(){
         Connection con = null;
 
-        String url = "jdbc:sqlserver://localhost:1434;databaseName=PatientAdmissionRecords;encrypt=true;trustServerCertificate=true;";
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=PatientAdmissionRecords;encrypt=true;trustServerCertificate=true;";
         String username = "Course";
         String password = "FVVXtcwjjX";
         try{
