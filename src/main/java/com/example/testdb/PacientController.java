@@ -52,7 +52,7 @@ public class PacientController implements Initializable {
 
     public void loadData() {
         String query = "SELECT * FROM Pacient";
-        Connection con = ConnectionDB.ConnectionMyDB();
+        Connection con = ConnectionDB.getConnection();
 
         try {
             data.clear();

@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ConnectionDB {
-    public static Connection ConnectionMyDB(){
+    public static Connection getConnection(){
         Connection con = null;
 
         String url = "jdbc:sqlserver://localhost:1433;databaseName=PatientAdmissionRecords;encrypt=true;trustServerCertificate=true;";

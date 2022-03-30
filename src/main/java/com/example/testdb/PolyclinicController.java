@@ -35,7 +35,7 @@ public class PolyclinicController implements Initializable {
 
     public void loadData() {
         String query = "SELECT * FROM Polyclinic";
-        Connection con = ConnectionDB.ConnectionMyDB();
+        Connection con = ConnectionDB.getConnection();
 
         try {
             dataPolyclinic.clear();

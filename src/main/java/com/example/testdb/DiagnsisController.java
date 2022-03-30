@@ -31,7 +31,7 @@ public class DiagnsisController implements Initializable {
 
     public void loadData() {
         String query = "SELECT * FROM Diagnsis";
-        Connection con = ConnectionDB.ConnectionMyDB();
+        Connection con = ConnectionDB.getConnection();
 
         try {
             data.clear();

@@ -4,10 +4,11 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testdb.DoctorController">
    <children>
-      <TableView fx:id="tableDoctor" layoutX="147.0" layoutY="81.0" prefHeight="274.0" prefWidth="493.0">
+      <TableView fx:id="tableDoctor" layoutX="154.0" layoutY="85.0" prefHeight="359.0" prefWidth="570.0">
         <columns>
           <TableColumn fx:id="idDoctor" prefWidth="75.0" text="DoctorID" />
           <TableColumn fx:id="colName" prefWidth="75.0" text="Имя" />
@@ -17,6 +18,14 @@
             <TableColumn fx:id="colOffice" prefWidth="77.59994506835938" text="№ Кабинета" />
         </columns>
       </TableView>
-      <Button fx:id="btnT0" layoutX="44.0" layoutY="154.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
+      <Button fx:id="btnOpenScenePacient" layoutX="23.0" layoutY="120.0" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#handleButtonActionPacient" prefHeight="40.0" prefWidth="40.0" AnchorPane.bottomAnchor="355.0" />
+      <Button fx:id="btnOpenSceneDoctor" layoutX="23.0" layoutY="29.0" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#handleButtonActionDoctor" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="btnOpenScenePolyclinic" layoutX="24.0" layoutY="197.0" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#handleButtonActionPolyclinic" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="btnOpenSceneSchedule" layoutX="24.0" layoutY="282.0" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#handleButtonActionSchedule" prefHeight="40.0" prefWidth="40.0" />
+      <HBox alignment="TOP_CENTER" layoutX="490.0" layoutY="19.0" prefHeight="59.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="btnAddDoctor" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#handleButtonActionAddDoctor" prefHeight="40.0" prefWidth="40.0" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
