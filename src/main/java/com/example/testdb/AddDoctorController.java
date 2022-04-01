@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,6 +20,24 @@ public class AddDoctorController implements Initializable{
     private Button btnBackToSceneDoctor;
 
     @FXML
+    private Button btnResetData;
+
+    @FXML
+    private TextField middlenameField;
+
+    @FXML
+    private TextField nameField;
+
+    @FXML
+    private TextField numberOfficeField;
+
+    @FXML
+    private TextField phoneNumberField;
+
+    @FXML
+    private TextField surnameField;
+
+    @FXML
     void handleBackToSceneDoctor(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Scene-Doctor.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
@@ -29,6 +48,15 @@ public class AddDoctorController implements Initializable{
         stage.show();
     }
 
+    @FXML
+    void handleResetData(ActionEvent event) {
+        nameField.setText(null);
+        surnameField.setText(null);
+        middlenameField.setText(null);
+        numberOfficeField.setText(null);
+        phoneNumberField.setText(null);
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
