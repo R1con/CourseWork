@@ -16,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
@@ -66,10 +67,18 @@ public class DoctorController implements Initializable {
     @FXML
     private Button btnAddDoctor;
 
+    @FXML
+    private Text tst;
+
     private ObservableList<Doctor> dataDoctor = FXCollections.observableArrayList();
     private PreparedStatement preparedStatement = null;
     private ResultSet rs = null;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadData();
+        designButton();
+    }
 
     @FXML
     void handleButtonActionPacient(ActionEvent event) throws IOException {
@@ -97,12 +106,11 @@ public class DoctorController implements Initializable {
     void handleButtonActionPolyclinic(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Scene-Polyclinic.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = (Stage) btnOpenScenePolyclinic.getScene().getWindow();
+        Stage stage = (Stage) btnAddDoctor.getScene().getWindow();
         stage.close();
         stage.setTitle("Polyclinic");
         stage.setScene(new Scene(root1));
         stage.show();
-
     }
 
     @FXML
@@ -111,10 +119,15 @@ public class DoctorController implements Initializable {
     }
 
     @FXML
-    void handleButtonActionAddDoctor(ActionEvent event) {
-
+    void handleButtonActionAddDoctor(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Scene-AddDoctor.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = (Stage) btnOpenScenePolyclinic.getScene().getWindow();
+        stage.close();
+        stage.setTitle("Add Doctor");
+        stage.setScene(new Scene(root1));
+        stage.show();
     }
-
 
     public void loadData() {
         String query = "SELECT * FROM Doctor";
@@ -132,6 +145,7 @@ public class DoctorController implements Initializable {
                         rs.getInt("Office")));
                 tableDoctor.setItems(dataDoctor);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -152,13 +166,11 @@ public class DoctorController implements Initializable {
             FileInputStream input3 = new FileInputStream("src/main/resources/assets/schedule.jpg");
             FileInputStream input4 = new FileInputStream("src/main/resources/assets/addDoctor.jpg");
 
-
             Image img = new Image(input);
             Image img1 = new Image(input1);
             Image img2 = new Image(input2);
             Image img3 = new Image(input3);
             Image img4 = new Image(input4);
-
 
             ImageView imgv = new ImageView(img);
             ImageView imgv1 = new ImageView(img1);
@@ -166,19 +178,14 @@ public class DoctorController implements Initializable {
             ImageView imgv3 = new ImageView(img3);
             ImageView imgv4 = new ImageView(img4);
 
-
             btnOpenScenePacient.setGraphic(imgv);
             btnOpenSceneDoctor.setGraphic(imgv1);
             btnOpenScenePolyclinic.setGraphic(imgv2);
             btnOpenSceneSchedule.setGraphic(imgv3);
             btnAddDoctor.setGraphic(imgv4);
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadData();
-        designButton();
     }
 }
