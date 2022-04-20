@@ -4,19 +4,19 @@ import lombok.Data;
 
 @Data
 public class Doctor {
-    private String Name;
-    private String Surname;
-    private String MiddleName;
-    private String PhoneNumber;
-    private int Office;
-    private int PostID;
-    private int PolyclinicID;
+    private String name;
+    private String surname;
+    private String middleName;
+    private String phoneNumber;
+    private int office;
+//    private int postID;
+//    private int polyclinicID;
 
     public Doctor(String name, String surname, String middleName, String phoneNumber, int office) {
-        Name = name;
-        Surname = surname;
-        MiddleName = middleName;
-        PhoneNumber = phoneNumber;
-        Office = office;
+        this.name = name;
+        this.surname = surname;
+        this.middleName = middleName;
+        this.phoneNumber = phoneNumber;
+        this.office = office;
     }
 }

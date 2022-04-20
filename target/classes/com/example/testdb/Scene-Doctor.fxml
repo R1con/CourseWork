@@ -13,7 +13,6 @@
    <children>
       <TableView fx:id="tableDoctor" layoutX="154.0" layoutY="85.0" prefHeight="359.0" prefWidth="570.0">
         <columns>
-          <TableColumn fx:id="idDoctor" prefWidth="75.0" text="DoctorID" />
           <TableColumn fx:id="colName" prefWidth="75.0" text="Имя" />
             <TableColumn fx:id="colSurname" prefWidth="75.0" text="Фамилия" />
             <TableColumn fx:id="colMiddleName" prefWidth="75.0" text="Отчество" />
