@@ -19,7 +19,7 @@ public class ConnectionDB {
             System.out.println("Connection to DB is true");
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("flase");
+            System.out.println("false");
         }
 
         return con;

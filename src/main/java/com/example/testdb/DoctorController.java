@@ -47,9 +47,6 @@ public class DoctorController implements Initializable {
     private TableColumn<Doctor, String> colSurname;
 
     @FXML
-    private TableColumn<Doctor, Integer> idDoctor;
-
-    @FXML
     private TableView<Doctor> tableDoctor;
 
     @FXML
@@ -139,8 +136,7 @@ public class DoctorController implements Initializable {
             rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                dataDoctor.add(new Doctor(rs.getInt("DoctorID"),
-                        rs.getString("Name"), rs.getString("Surname"),
+                dataDoctor.add(new Doctor(rs.getString("Name"), rs.getString("Surname"),
                         rs.getString("MiddleName"), rs.getString("PhoneNumber"),
                         rs.getInt("Office")));
                 tableDoctor.setItems(dataDoctor);
@@ -150,7 +146,6 @@ public class DoctorController implements Initializable {
             e.printStackTrace();
         }
 
-        idDoctor.setCellValueFactory(new PropertyValueFactory<>("DoctorID"));
         colName.setCellValueFactory(new PropertyValueFactory<>("Name"));
         colSurname.setCellValueFactory(new PropertyValueFactory<>("Surname"));
         colMiddleName.setCellValueFactory(new PropertyValueFactory<>("MiddleName"));

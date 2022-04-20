@@ -3,6 +3,7 @@ module com.example.testdb {
     requires javafx.fxml;
     requires java.sql;
     requires fontawesomefx;
+    requires lombok;
 
 
     opens com.example.testdb to javafx.fxml;
