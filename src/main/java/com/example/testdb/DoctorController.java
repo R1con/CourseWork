@@ -27,6 +27,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DoctorController implements Initializable {
 
@@ -46,8 +48,15 @@ public class DoctorController implements Initializable {
     private TableColumn<Doctor, String> colSurname;
 
     @FXML
+    private TableColumn<Doctor, String> columnPost;
+    @FXML
     private TableView<Doctor> tableDoctor;
 
+
+    @FXML
+    private Button btnRefresh;
+    @FXML
+    private Button btnDelete;
     @FXML
     private Button btnOpenScenePacient;
 
@@ -65,6 +74,7 @@ public class DoctorController implements Initializable {
 
     private ObservableList<Doctor> dataDoctor = FXCollections.observableArrayList();
     private PreparedStatement preparedStatement = null;
+    Doctor doctor;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -98,7 +108,7 @@ public class DoctorController implements Initializable {
     void handleButtonActionPolyclinic(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Scene-Polyclinic.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = (Stage) btnAddDoctor.getScene().getWindow();
+        Stage stage = (Stage) btnOpenScenePolyclinic.getScene().getWindow();
         stage.close();
         stage.setTitle("Polyclinic");
         stage.setScene(new Scene(root1));
@@ -128,7 +138,8 @@ public class DoctorController implements Initializable {
         stage.show();
     }
 
-    public void loadData() {
+    @FXML
+    private void refreshTable() {
         String query = "SELECT * FROM Doctor";
         Connection con = ConnectionDB.getConnection();
 
@@ -138,21 +149,46 @@ public class DoctorController implements Initializable {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                dataDoctor.add(new Doctor(resultSet.getString("Name"), resultSet.getString("Surname"),
+                dataDoctor.add(new Doctor(resultSet.getInt("doctorId"),resultSet.getString("Name"), resultSet.getString("Surname"),
                         resultSet.getString("MiddleName"), resultSet.getString("PhoneNumber"),
-                        resultSet.getInt("Office")));
+                        resultSet.getInt("Office"), resultSet.getString("post")));
                 tableDoctor.setItems(dataDoctor);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void handleButtonActionDelete(ActionEvent event) {
+        deleteData();
+    }
+
+    private void deleteData() {
+        doctor = tableDoctor.getSelectionModel().getSelectedItem();
+        try {
+            String query = "DELETE FROM Doctor WHERE DoctorID  =" + doctor.getDoctorId();
+            Connection con = ConnectionDB.getConnection();
+            preparedStatement = con.prepareStatement(query);
+            preparedStatement.execute();
+            refreshTable();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DoctorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void loadData() {
+        Connection con = ConnectionDB.getConnection();
+        refreshTable();
 
         colName.setCellValueFactory(new PropertyValueFactory<>("Name"));
         colSurname.setCellValueFactory(new PropertyValueFactory<>("Surname"));
         colMiddleName.setCellValueFactory(new PropertyValueFactory<>("MiddleName"));
         colOffice.setCellValueFactory(new PropertyValueFactory<>("Office"));
         colPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
+        columnPost.setCellValueFactory(new PropertyValueFactory<>("Post"));
     }
 
     public void designButton() {
@@ -162,24 +198,34 @@ public class DoctorController implements Initializable {
             FileInputStream input2 = new FileInputStream("src/main/resources/assets/polyclinic.jpg");
             FileInputStream input3 = new FileInputStream("src/main/resources/assets/schedule.jpg");
             FileInputStream input4 = new FileInputStream("src/main/resources/assets/addDoctor.jpg");
+            FileInputStream input5 = new FileInputStream("src/main/resources/com/example/testdb/assets/delete.jpg");
+            FileInputStream input6 = new FileInputStream("src/main/resources/com/example/testdb/assets/refresh.jpg");
+
 
             Image img = new Image(input);
             Image img1 = new Image(input1);
             Image img2 = new Image(input2);
             Image img3 = new Image(input3);
             Image img4 = new Image(input4);
+            Image img5 = new Image(input5);
+            Image img6 = new Image(input6);
 
             ImageView imgv = new ImageView(img);
             ImageView imgv1 = new ImageView(img1);
             ImageView imgv2 = new ImageView(img2);
             ImageView imgv3 = new ImageView(img3);
             ImageView imgv4 = new ImageView(img4);
+            ImageView imgv5 = new ImageView(img5);
+            ImageView imgv6 = new ImageView(img6);
 
             btnOpenScenePacient.setGraphic(imgv);
             btnOpenSceneDoctor.setGraphic(imgv1);
             btnOpenScenePolyclinic.setGraphic(imgv2);
             btnOpenSceneSchedule.setGraphic(imgv3);
             btnAddDoctor.setGraphic(imgv4);
+            btnDelete.setGraphic(imgv5);
+            btnRefresh.setGraphic(imgv6);
+            btnRefresh.setGraphic(imgv6);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

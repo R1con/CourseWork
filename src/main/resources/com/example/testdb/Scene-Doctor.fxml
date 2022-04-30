@@ -5,27 +5,20 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testdb.DoctorController">
    <children>
-      <TableView fx:id="tableDoctor" layoutX="154.0" layoutY="85.0" prefHeight="359.0" prefWidth="570.0">
+      <TableView fx:id="tableDoctor" layoutX="154.0" layoutY="85.0" prefHeight="402.0" prefWidth="570.0">
         <columns>
           <TableColumn fx:id="colName" prefWidth="75.0" text="Имя" />
             <TableColumn fx:id="colSurname" prefWidth="75.0" text="Фамилия" />
             <TableColumn fx:id="colMiddleName" prefWidth="75.0" text="Отчество" />
             <TableColumn fx:id="colPhoneNumber" prefWidth="112.00006103515625" text="Номер телефона" />
-            <TableColumn fx:id="colOffice" prefWidth="77.59994506835938" text="№ Кабинета" />
+            <TableColumn fx:id="colOffice" prefWidth="86.39999389648438" text="№ Кабинета" />
+            <TableColumn fx:id="columnPost" prefWidth="145.5999755859375" text="Должность" />
         </columns>
       </TableView>
-      <HBox alignment="TOP_CENTER" layoutX="490.0" layoutY="19.0" prefHeight="59.0" prefWidth="200.0">
-         <children>
-            <Button fx:id="btnAddDoctor" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#handleButtonActionAddDoctor" prefHeight="40.0" prefWidth="40.0" />
-         </children>
-      </HBox>
-      <Text fx:id="tst" layoutX="315.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="162.78306007385254" />
       <VBox alignment="TOP_CENTER" layoutX="7.0" layoutY="37.0" prefHeight="463.0" prefWidth="134.0">
          <children>
             <Button fx:id="btnOpenSceneDoctor" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#handleButtonActionDoctor" prefHeight="40.0" prefWidth="40.0">
@@ -50,5 +43,8 @@
             </Button>
          </children>
       </VBox>
+      <Button fx:id="btnDelete" layoutX="590.0" layoutY="17.0" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#handleButtonActionDelete" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="btnAddDoctor" layoutX="656.0" layoutY="17.0" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="30.0" mnemonicParsing="false" onAction="#handleButtonActionAddDoctor" prefHeight="40.0" prefWidth="30.0" />
+      <Button fx:id="btnRefresh" layoutX="518.0" layoutY="17.0" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#refreshData" prefHeight="40.0" prefWidth="40.0" />
    </children>
 </AnchorPane>
