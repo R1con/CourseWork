@@ -17,7 +17,7 @@
       </TableView>
       <ImageView fitHeight="76.0" fitWidth="81.0" layoutX="25.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../assets/doctor.jpg" />
+            <Image url="@assets/doctor.jpg" />
          </image>
       </ImageView>
       <Button fx:id="btnTest" layoutX="37.0" layoutY="239.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="86.0" text="Button" />

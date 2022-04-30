@@ -25,8 +25,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class AddDoctorController implements Initializable{
+public class AddDoctorController implements Initializable {
 
     @FXML
     private Button btnBackToSceneDoctor;
@@ -52,11 +54,15 @@ public class AddDoctorController implements Initializable{
     @FXML
     private TextField surnameField;
 
-    private String query = "INSERT Doctor VALUES (?, ?, ?, ?, ?)";
+    @FXML
+    private TextField postField;
+
+    private String query = "INSERT Doctor VALUES (?, ?, ?, ?, ?, ?)";
+    private boolean update;
     Connection connection = null;
     ResultSet resultSet = null;
     PreparedStatement preparedStatement;
-    Doctor doctor = null;
+    Doctor doctor;
     int doctorId;
 
     @Override
@@ -77,18 +83,14 @@ public class AddDoctorController implements Initializable{
 
     @FXML
     void handleResetData(ActionEvent event) {
-        nameField.setText(null);
-        surnameField.setText(null);
-        middlenameField.setText(null);
-        numberOfficeField.setText(null);
-        phoneNumberField.setText(null);
+        clearData();
     }
 
     @FXML
     void handleSaveData(ActionEvent event) throws SQLException {
         connection = ConnectionDB.getConnection();
         String name = nameField.getText();
-        String  surname = surnameField.getText();
+        String surname = surnameField.getText();
         String middleName = middlenameField.getText();
         String numberOffice = numberOfficeField.getText();
         String phoneNumber = phoneNumberField.getText();
@@ -99,35 +101,52 @@ public class AddDoctorController implements Initializable{
             alert.setContentText("Заполните все поля!");
             alert.showAndWait();
         } else {
-            int phoneNumber1 = Integer.valueOf(phoneNumberField.getText());
-            //Inter numberOffice1 = Integer.valueOf(numberOfficeField.getText());
+            getQuery();
+            insert();
+            clearData();
+        }
+    }
 
+    private void getQuery() {
+        if (!update) {
+            query = "INSERT Doctor VALUES (?, ?, ?, ?, ?, ?)";
+        } else {
+            query = "UPDATE `Doctor` SET "
+                    + "`name`=?,"
+                    + "`birth`=?,"
+                    + "`adress`=?,"
+                    + "`email`= ? WHERE id = '" + doctorId + "'";
+        }
+    }
 
+    private void insert() {
+        try {
+            preparedStatement = connection.prepareStatement(query);
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, nameField.getText());
             preparedStatement.setString(2, surnameField.getText());
             preparedStatement.setString(3, middlenameField.getText());
-            preparedStatement.setInt(4, phoneNumber1);
-            //preparedStatement.setInt(5, numberOffice1);
-            preparedStatement.executeQuery();
+            preparedStatement.setInt(4, Integer.parseInt(phoneNumberField.getText()));
+            preparedStatement.setInt(5, Integer.parseInt(numberOfficeField.getText()));
+            preparedStatement.setString(6, postField.getText());
+            preparedStatement.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AddDoctorController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
-    public void insertData() throws SQLException {
-        int phoneNumber = Integer.valueOf(phoneNumberField.getText());
-        int numberOffice = Integer.valueOf(numberOfficeField.getText());
-
-
-        preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, nameField.getText());
-        preparedStatement.setString(2, surnameField.getText());
-        preparedStatement.setString(3, middlenameField.getText());
-        preparedStatement.setInt(4, phoneNumber);
-        preparedStatement.setInt(5, numberOffice);
-        preparedStatement.executeQuery();
+    private void clearData() {
+        nameField.setText(null);
+        surnameField.setText(null);
+        middlenameField.setText(null);
+        numberOfficeField.setText(null);
+        phoneNumberField.setText(null);
+        postField.setText(null);
     }
 
-    public void designButton() {
+    private void designButton() {
         try {
             FileInputStream input = new FileInputStream("src/main/resources/assets/backArrow.jpg");
             Image img = new Image(input);

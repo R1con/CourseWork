@@ -29,9 +29,11 @@ public class PolyclinicController implements Initializable {
     private TableView<Polyclinic> tablePolyclinic;
 
     private ObservableList<Polyclinic> dataPolyclinic = FXCollections.observableArrayList();
-    private PreparedStatement preparedStatement = null;
-    private ResultSet rs = null;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadData();
+    }
 
     public void loadData() {
         String query = "SELECT * FROM Polyclinic";
@@ -39,14 +41,13 @@ public class PolyclinicController implements Initializable {
 
         try {
             dataPolyclinic.clear();
-            preparedStatement = con.prepareStatement(query);
-            rs = preparedStatement.executeQuery();
+            PreparedStatement preparedStatement = con.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (rs.next()) {
-                dataPolyclinic.add(new Polyclinic(rs.getString("NamePolyclinic"),
-                        rs.getString("adress")));
+            while (resultSet.next()) {
+                dataPolyclinic.add(new Polyclinic(resultSet.getString("NamePolyclinic"),
+                        resultSet.getString("adress")));
             }
-
             tablePolyclinic.setItems(dataPolyclinic);
 
         } catch (SQLException throwables) {
@@ -56,8 +57,5 @@ public class PolyclinicController implements Initializable {
         columnNamePolyclinic.setCellValueFactory(new PropertyValueFactory<>("NamePolyclinic"));
         columnAddress.setCellValueFactory(new PropertyValueFactory<>("adress"));
     }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadData();
-    }
+
 }

@@ -25,23 +25,21 @@ public class DiagnsisController implements Initializable {
     private TableView<Diagnsis> tableViewDiagnsis;
 
 
-    private ObservableList<Diagnsis> data = FXCollections.observableArrayList();
-    private PreparedStatement preparedStatement = null;
-    private ResultSet rs = null;
+    private ObservableList<Diagnsis> diagnsisObservableList = FXCollections.observableArrayList();
 
     public void loadData() {
         String query = "SELECT * FROM Diagnsis";
         Connection con = ConnectionDB.getConnection();
 
         try {
-            data.clear();
-            preparedStatement = con.prepareStatement(query);
-            rs = preparedStatement.executeQuery();
+            diagnsisObservableList.clear();
+            PreparedStatement preparedStatement = con.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (rs.next()) {
-                data.add(new Diagnsis(rs.getInt("DiagnsisID"),
-                        rs.getString("NameDiagnsis")));
-                tableViewDiagnsis.setItems(data);
+            while (resultSet.next()) {
+                diagnsisObservableList.add(new Diagnsis(resultSet.getInt("DiagnsisID"),
+                        resultSet.getString("NameDiagnsis")));
+                tableViewDiagnsis.setItems(diagnsisObservableList);
             }
         } catch (SQLException e) {
             System.out.println("Table View not update");

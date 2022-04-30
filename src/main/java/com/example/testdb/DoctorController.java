@@ -16,7 +16,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
@@ -64,12 +63,8 @@ public class DoctorController implements Initializable {
     @FXML
     private Button btnAddDoctor;
 
-    @FXML
-    private Text tst;
-
     private ObservableList<Doctor> dataDoctor = FXCollections.observableArrayList();
     private PreparedStatement preparedStatement = null;
-    private ResultSet rs = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -111,7 +106,14 @@ public class DoctorController implements Initializable {
     }
 
     @FXML
-    void handleButtonActionSchedule(ActionEvent event) {
+    void handleButtonActionSchedule(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Scene-.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = (Stage) btnOpenScenePolyclinic.getScene().getWindow();
+        stage.close();
+        stage.setTitle("Add Doctor");
+        stage.setScene(new Scene(root1));
+        stage.show();
 
     }
 
@@ -133,12 +135,12 @@ public class DoctorController implements Initializable {
         try {
             dataDoctor.clear();
             preparedStatement = con.prepareStatement(query);
-            rs = preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (rs.next()) {
-                dataDoctor.add(new Doctor(rs.getString("Name"), rs.getString("Surname"),
-                        rs.getString("MiddleName"), rs.getString("PhoneNumber"),
-                        rs.getInt("Office")));
+            while (resultSet.next()) {
+                dataDoctor.add(new Doctor(resultSet.getString("Name"), resultSet.getString("Surname"),
+                        resultSet.getString("MiddleName"), resultSet.getString("PhoneNumber"),
+                        resultSet.getInt("Office")));
                 tableDoctor.setItems(dataDoctor);
             }
 
@@ -156,7 +158,7 @@ public class DoctorController implements Initializable {
     public void designButton() {
         try {
             FileInputStream input = new FileInputStream("src/main/resources/assets/Pacient.jpg");
-            FileInputStream input1 = new FileInputStream("src/main/resources/assets/doctor.jpg");
+            FileInputStream input1 = new FileInputStream("src/main/resources/com/example/testdb/assets/doctor.jpg");
             FileInputStream input2 = new FileInputStream("src/main/resources/assets/polyclinic.jpg");
             FileInputStream input3 = new FileInputStream("src/main/resources/assets/schedule.jpg");
             FileInputStream input4 = new FileInputStream("src/main/resources/assets/addDoctor.jpg");
