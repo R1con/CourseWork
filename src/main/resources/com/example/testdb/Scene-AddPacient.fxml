@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testdb.AddPacientController">
+   <children>
+      <HBox alignment="TOP_CENTER" prefHeight="44.0" prefWidth="470.0">
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Заполнение данных о пациенте">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
+            <Button fx:id="btnBack" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#handleBackScene" prefHeight="40.0" prefWidth="40.0">
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="46.0" prefWidth="470.0">
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Имя" wrappingWidth="46.8984375">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <TextField fx:id="nameField" prefHeight="30.0" prefWidth="266.0">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="46.0" prefWidth="470.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Фамилия" wrappingWidth="110.8984375">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <TextField fx:id="surnameField" prefHeight="30.0" prefWidth="266.0">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="46.0" prefWidth="470.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Отчество" wrappingWidth="110.8984375">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <TextField fx:id="middlenameField" prefHeight="30.0" prefWidth="266.0">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="46.0" prefWidth="470.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Пол" wrappingWidth="44.49847412109375">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <TextField fx:id="genderField" prefHeight="30.0" prefWidth="266.0">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="46.0" prefWidth="470.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Дата рождения" wrappingWidth="171.69842910766602">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <TextField fx:id="birthdayField" prefHeight="30.0" prefWidth="266.0">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="46.0" prefWidth="470.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Адрес" wrappingWidth="69.2984619140625">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <TextField fx:id="adressFIeld" prefHeight="30.0" prefWidth="266.0">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="46.0" prefWidth="470.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Номер телефона" wrappingWidth="186.09845352172852">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <TextField fx:id="phoneNumberField" prefHeight="30.0" prefWidth="266.0">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="46.0" prefWidth="470.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Страховой полис" wrappingWidth="195.69842910766602">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <TextField fx:id="insurancepPolicyField" prefHeight="30.0" prefWidth="266.0">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="btnSaveData" mnemonicParsing="false" onAction="#handleSaveData" prefHeight="54.0" prefWidth="170.0" style="-fx-background-color: #f0f8ff; -fx-border-color: #000000;" text="Сохранить">
+               <HBox.margin>
+                  <Insets right="100.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnClear" mnemonicParsing="false" onAction="#handleClear" prefHeight="54.0" prefWidth="170.0" style="-fx-background-color: #f0f8ff; -fx-border-color: #000000;" text="Очистить" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

@@ -96,7 +96,6 @@ public class PolyclinicController implements Initializable {
         stage.setTitle("Doctor");
         stage.setScene(new Scene(root1));
         stage.show();
-
     }
 
     @FXML
@@ -139,6 +138,7 @@ public class PolyclinicController implements Initializable {
             btnPacient.setGraphic(imgv);
             btnDoctor.setGraphic(imgv1);
             btnPolyclinic.setGraphic(imgv2);
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

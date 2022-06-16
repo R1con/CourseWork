@@ -1,8 +1,7 @@
 package com.example.testdb;
 
 import DB.ConnectionDB;
-import Model.Doctor;
-import javafx.beans.property.IntegerProperty;
+import Model.Pacient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,16 +27,28 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class AddDoctorController implements Initializable {
+public class AddPacientController implements Initializable {
 
     @FXML
-    private Button btnBackToSceneDoctor;
+    private TextField adressFIeld;
 
     @FXML
-    private Button btnResetData;
+    private TextField birthdayField;
+
+    @FXML
+    private Button btnBack;
+
+    @FXML
+    private Button btnClear;
 
     @FXML
     private Button btnSaveData;
+
+    @FXML
+    private TextField genderField;
+
+    @FXML
+    private TextField insurancepPolicyField;
 
     @FXML
     private TextField middlenameField;
@@ -46,56 +57,49 @@ public class AddDoctorController implements Initializable {
     private TextField nameField;
 
     @FXML
-    private TextField numberOfficeField;
-
-    @FXML
     private TextField phoneNumberField;
 
     @FXML
     private TextField surnameField;
 
-    @FXML
-    private TextField postField;
-
-    private String query = "INSERT Doctor VALUES (?, ?, ?, ?, ?, ?)";
+    private String query = "INSERT Pacient VALUES (?, ?, ?, ?, ?, ?)";
     private boolean update;
     Connection connection = null;
-//    ResultSet resultSet = null;
+    ResultSet resultSet = null;
     PreparedStatement preparedStatement;
-//    Doctor doctor;
-    int doctorId;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        designButton();
-    }
+    private int pacientId;
+    private Pacient pacient;
 
     @FXML
-    void handleBackToSceneDoctor(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Scene-Doctor.fxml"));
-        Parent root1 = fxmlLoader.load();
-        Stage stage = (Stage) btnBackToSceneDoctor.getScene().getWindow();
+    void handleBackScene(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Scene-Pacient.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
         stage.setTitle("Doctor");
         stage.setScene(new Scene(root1));
         stage.show();
+
     }
 
     @FXML
-    void handleResetData(ActionEvent event) {
-        clearData();
+    void handleClear(ActionEvent event) {
+
     }
 
     @FXML
-    void handleSaveData(ActionEvent event) throws SQLException {
+    void handleSaveData(ActionEvent event) {
         connection = ConnectionDB.getConnection();
         String name = nameField.getText();
         String surname = surnameField.getText();
         String middleName = middlenameField.getText();
-        String numberOffice = numberOfficeField.getText();
         String phoneNumber = phoneNumberField.getText();
+        String gender = genderField.getText();
+        String address = adressFIeld.getText();
+        String insurancepPolicy = insurancepPolicyField.getText();
 
-        if (name.isEmpty() || surname.isEmpty() || middleName.isEmpty() || numberOffice.isEmpty() || phoneNumber.isEmpty()) {
+        if (name.isEmpty() || surname.isEmpty() || middleName.isEmpty() || phoneNumber.isEmpty() || gender.isEmpty() || address.isEmpty() || insurancepPolicy.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setContentText("Заполните все поля!");
@@ -105,17 +109,25 @@ public class AddDoctorController implements Initializable {
             insert();
             clearData();
         }
+
+    }
+
+    private void clearData() {
+        nameField.setText(null);
+        surnameField.setText(null);
+        middlenameField.setText(null);
+        phoneNumberField.setText(null);
     }
 
     private void getQuery() {
         if (!update) {
-            query = "INSERT Doctor VALUES (?, ?, ?, ?, ?, ?)";
+            query = "INSERT Pacient VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         } else {
-            query = "UPDATE `Doctor` SET "
+            query = "UPDATE `Pacient` SET "
                     + "`name`=?,"
                     + "`birth`=?,"
                     + "`adress`=?,"
-                    + "`email`= ? WHERE id = '" + doctorId + "'";
+                    + "`email`= ? WHERE id = '" + pacientId + "'";
         }
     }
 
@@ -125,15 +137,16 @@ public class AddDoctorController implements Initializable {
             preparedStatement.setString(1, nameField.getText());
             preparedStatement.setString(2, surnameField.getText());
             preparedStatement.setString(3, middlenameField.getText());
+            preparedStatement.setString(4, genderField.getText());
+            preparedStatement.setString(5, birthdayField.getText());
             try {
-                preparedStatement.setInt(4, Integer.parseInt(phoneNumberField.getText()));
-                preparedStatement.setInt(5, Integer.parseInt(numberOfficeField.getText()));
+                preparedStatement.setLong(6, Long.parseLong(phoneNumberField.getText()));
+                preparedStatement.setInt(8, Integer.parseInt(insurancepPolicyField.getText()));
             } catch (NumberFormatException e) {
                 showMessageErrorSelectItem();
-                throw  new NumberFormatException();
+                e.printStackTrace();
             }
-
-            preparedStatement.setString(6, postField.getText());
+            preparedStatement.setString(7, adressFIeld.getText());
             preparedStatement.execute();
 
         } catch (SQLException ex) {
@@ -147,25 +160,21 @@ public class AddDoctorController implements Initializable {
         alert.setContentText("Неккоректные данные!");
         alert.showAndWait();
     }
-
-    private void clearData() {
-        nameField.setText(null);
-        surnameField.setText(null);
-        middlenameField.setText(null);
-        numberOfficeField.setText(null);
-        phoneNumberField.setText(null);
-        postField.setText(null);
-    }
-
     private void designButton() {
         try {
             FileInputStream input = new FileInputStream("src/main/resources/assets/backArrow.jpg");
             Image img = new Image(input);
             ImageView imgv = new ImageView(img);
-            btnBackToSceneDoctor.setGraphic(imgv);
+            btnBack.setGraphic(imgv);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        designButton();
     }
 }

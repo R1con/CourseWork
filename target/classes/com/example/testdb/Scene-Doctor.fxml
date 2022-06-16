@@ -2,12 +2,14 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testdb.DoctorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="838.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testdb.DoctorController">
    <children>
       <TableView fx:id="tableDoctor" layoutX="154.0" layoutY="85.0" prefHeight="402.0" prefWidth="570.0">
         <columns>
@@ -36,15 +38,23 @@
                   <Insets bottom="40.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnOpenSceneSchedule" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#handleButtonActionSchedule" prefHeight="40.0" prefWidth="40.0">
-               <VBox.margin>
-                  <Insets bottom="40.0" />
-               </VBox.margin>
-            </Button>
          </children>
       </VBox>
-      <Button fx:id="btnDelete" layoutX="590.0" layoutY="17.0" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#handleButtonActionDelete" prefHeight="40.0" prefWidth="40.0" />
-      <Button fx:id="btnAddDoctor" layoutX="656.0" layoutY="17.0" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="30.0" mnemonicParsing="false" onAction="#handleButtonActionAddDoctor" prefHeight="40.0" prefWidth="30.0" />
-      <Button fx:id="btnRefresh" layoutX="518.0" layoutY="17.0" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="40.0" prefWidth="40.0" />
+      <HBox alignment="TOP_CENTER" layoutX="509.0" layoutY="14.0" prefHeight="66.0" prefWidth="214.0">
+         <children>
+            <Button fx:id="btnRefresh" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#refreshData" prefHeight="40.0" prefWidth="40.0" />
+            <Button fx:id="btnDelete" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#handleButtonActionDelete" prefHeight="40.0" prefWidth="40.0">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnAddDoctor" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="30.0" mnemonicParsing="false" onAction="#handleButtonActionAddDoctor" prefHeight="40.0" prefWidth="30.0">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <Label fx:id="labelCountRow" layoutX="374.0" layoutY="516.0" text="Label" />
    </children>
 </AnchorPane>
